@@ -11,9 +11,13 @@ namespace ImageStore
 {
     using System;
     using System.Collections.ObjectModel;
-    
-    public partial class User
+    using System.ComponentModel;
+
+    public partial class User : INotifyPropertyChanged
     {
+        private string username;
+        private string password;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
@@ -21,10 +25,49 @@ namespace ImageStore
         }
     
         public short Id { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<Image> Images { get; set; }
+
+        public string Password {
+            get { return password; }
+            set
+            {
+                if (password != value)
+                {
+                    password = value;
+                    OnPropertyChanged("Password");
+                }
+            }
+        }
+
+        public string Username
+        {
+            get { return username; }
+            set
+            {
+                if (username != value)
+                {
+                    username = value;
+                    OnPropertyChanged("Username");
+                }
+            }
+        }
+
+        #region PropertyChanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        #endregion PropertyChanged
     }
 }
