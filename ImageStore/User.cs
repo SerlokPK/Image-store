@@ -13,7 +13,7 @@ namespace ImageStore
     using System.Collections.ObjectModel;
     using System.ComponentModel;
 
-    public partial class User : INotifyPropertyChanged
+    public partial class User : INotifyPropertyChanged //napravi novui klasu, ovo je baza - ne diraj
     {
         private string username;
         private string password;

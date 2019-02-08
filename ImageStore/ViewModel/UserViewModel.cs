@@ -11,7 +11,9 @@ namespace ImageStore.ViewModel
         public User User { get; set; }
         public UserViewModel()
         {
-
+            using (var context = new ImageStoreEntities()) {
+                //context.Images;
+            }
         }
     }
 }
