@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ImageStore.Helpers;
 
 namespace ImageStore.ViewModel
 {
-    public class UserViewModel
+    public class UserViewModel : BaseViewModel
     {
-        public User User { get; set; }
         public UserViewModel()
         {
             using (var context = new ImageStoreEntities()) {
