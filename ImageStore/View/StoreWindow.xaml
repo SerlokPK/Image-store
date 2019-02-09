@@ -12,9 +12,12 @@
         <DataTemplate DataType="{x:Type viewModel:AddImageViewModel}">
             <views:AddImageView/>
         </DataTemplate>
-        <!--<DataTemplate DataType="{x:Type viewModel:StudentViewModel}">
-            <views:StudentView/>
-        </DataTemplate>-->
+        <DataTemplate DataType="{x:Type viewModel:ImagesViewModel}">
+            <views:ImagesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:AccountViewModel}">
+            <views:AccountView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -25,11 +28,11 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="My images" Command="{Binding NavCommand}"
                           CommandParameter="images" 
-                          Width="166" Height="30"/>
+                          Width="140" Height="30"/>
                 <MenuItem Header="Add image" Command="{Binding NavCommand}"
-                          CommandParameter="add" Width="164"/>
+                          CommandParameter="add" Width="160"/>
                 <MenuItem Header="Account details" Command="{Binding NavCommand}"
-                          CommandParameter="account" Width="152"/>
+                          CommandParameter="account" Width="160"/>
             </Menu>
         </DockPanel>
         <Grid Grid.Row="1">

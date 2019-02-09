@@ -40,15 +40,18 @@ namespace ImageStore.ViewModel
             {
                 var dbUser = context.Users.Include(u => u.Images).Where(u => u.UserName == User.Username).SingleOrDefault();
                 var imageList = new ObservableCollection<ImageModel>();
-                imageList.Add(dbUser.Images.Where(i => i.UserId == dbUser.Id).Select(x => new ImageModel
+                foreach(var image in dbUser.Images)
                 {
-                    Id = x.Id,
-                    Description = x.Description,
-                    Created = x.Created,
-                    Path = x.Path,
-                    Title = x.Title,
-                    UserId = x.UserId,
-                }).Single());
+                    imageList.Add(new ImageModel
+                    {
+                        Id = image.Id,
+                        Created = image.Created,
+                        Description = image.Description,
+                        Path = image.Path,
+                        Title = image.Title,
+                        UserId = image.UserId,
+                    });
+                }
                 user = new UserModel
                 {
                     Id = dbUser.Id,
@@ -59,7 +62,9 @@ namespace ImageStore.ViewModel
             }
 
             var storeWindow = new StoreWindow();
-            storeWindow.DataContext = new StoreViewModel(user, new ImagesViewModel());
+            var imageVM = new ImagesViewModel();
+            imageVM.Images = imageVM.GetImages(user);
+            storeWindow.DataContext = new StoreViewModel(user, imageVM);
             CloseAction();
             storeWindow.Show();
         }

@@ -21,14 +21,14 @@
         <!--<Button  Style="{StaticResource ImageButtonStyle}" Command="{Binding AddImageCommand}" HorizontalAlignment="Left" Margin="106,44,0,0" VerticalAlignment="Top" Width="274" Height="143">
             <Image Source="{Binding Image.Path}"/>
         </Button>-->
-        <Label Content="Image title" HorizontalAlignment="Left" Margin="186,198,0,0" VerticalAlignment="Top" FontSize="22"/>
-        <TextBox Text="{Binding Image.Title, Mode=TwoWay}" HorizontalAlignment="Left" Height="39" Margin="106,242,0,0"  VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" FontSize="18"/>
-        <Label Content="Description" HorizontalAlignment="Left" Margin="186,307,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <Label Content="Image title" HorizontalAlignment="Left" Margin="183,137,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <TextBox Text="{Binding Image.Title, Mode=TwoWay}" HorizontalAlignment="Left" Height="39" Margin="103,181,0,0"  VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" FontSize="18"/>
+        <Label Content="Description" HorizontalAlignment="Left" Margin="183,246,0,0" VerticalAlignment="Top" FontSize="22"/>
         <TextBox
             TextWrapping="Wrap"
             AcceptsReturn="True"
             HorizontalScrollBarVisibility="Disabled"
-            VerticalScrollBarVisibility="Auto" Margin="106,367,112,99"/>
-        <Button Content="Save image"  HorizontalAlignment="Left" Margin="106,550,0,0" VerticalAlignment="Top" Width="274" FontSize="18" Height="38" Background="#FF1986E0"/>
+            VerticalScrollBarVisibility="Auto" Margin="103,306,112,87"/>
+        <Button Content="Save image"  HorizontalAlignment="Left" Margin="103,489,0,0" VerticalAlignment="Top" Width="274" FontSize="18" Height="38" Background="#FF1986E0"/>
     </Grid>
 </UserControl>

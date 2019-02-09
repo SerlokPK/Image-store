@@ -1,15 +1,14 @@
 ﻿using ImageStore.ViewModel.Store;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace ImageStore.View.StoreViews
 {
     /// <summary>
-    /// Interaction logic for ImagesView.xaml
+    /// Interaction logic for AccountView.xaml
     /// </summary>
-    public partial class ImagesView : UserControl
+    public partial class AccountView : UserControl
     {
-        public ImagesView()
+        public AccountView()
         {
             InitializeComponent();
         }

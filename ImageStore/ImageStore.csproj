@@ -99,6 +99,7 @@
       <DependentUpon>ImageStore_Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\StoreViewModel.cs" />
+    <Compile Include="ViewModel\Store\AccountViewModel.cs" />
     <Compile Include="ViewModel\Store\AddImageViewModel.cs" />
     <Compile Include="ViewModel\Store\ImagesViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
@@ -106,6 +107,9 @@
     </Compile>
     <Compile Include="View\RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StoreViews\AccountView.xaml.cs">
+      <DependentUpon>AccountView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StoreViews\AddImageView.xaml.cs">
       <DependentUpon>AddImageView.xaml</DependentUpon>
@@ -175,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StoreViews\AccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

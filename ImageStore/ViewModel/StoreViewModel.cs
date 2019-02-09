@@ -7,7 +7,8 @@ namespace ImageStore.ViewModel
     public class StoreViewModel : BaseViewModel
     {
         private AddImageViewModel addImageViewModel = new AddImageViewModel();
-        private ImagesViewModel ImagesViewModel = new ImagesViewModel();
+        private ImagesViewModel imagesViewModel = new ImagesViewModel();
+        private AccountViewModel accountViewModel = new AccountViewModel();
         private BaseViewModel currentViewModel;
 
         public CommandHelper<string> NavCommand { get; private set; }
@@ -17,6 +18,7 @@ namespace ImageStore.ViewModel
         {
             NavCommand = new CommandHelper<string>(OnNav);
             CurrentViewModel = viewModel;
+            CurrentViewModel.User = user;
             User = user;
         }
 
@@ -34,15 +36,16 @@ namespace ImageStore.ViewModel
             switch (destination)
             {
                 case "images":
-                    ImagesViewModel.User = User;
-                    CurrentViewModel = ImagesViewModel;
+                    imagesViewModel.User = User;
+                    CurrentViewModel = imagesViewModel;
                     break;
                 case "add":
                     addImageViewModel.User = User;
                     CurrentViewModel = addImageViewModel;
                     break;
                 case "account":
-                    //CurrentViewModel = studentViewModel;
+                    CurrentViewModel = accountViewModel;
+                    CurrentViewModel.User = User;
                     break;
             }
         }
