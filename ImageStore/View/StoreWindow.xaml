@@ -1,0 +1,39 @@
+﻿<Window x:Class="ImageStore.View.StoreWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImageStore.View"
+        xmlns:views="clr-namespace:ImageStore.View.StoreViews"
+        xmlns:viewModel="clr-namespace:ImageStore.ViewModel.Store"
+        mc:Ignorable="d"
+        Title="ImageStore" Height="650" Width="500">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:AddImageViewModel}">
+            <views:AddImageView/>
+        </DataTemplate>
+        <!--<DataTemplate DataType="{x:Type viewModel:StudentViewModel}">
+            <views:StudentView/>
+        </DataTemplate>-->
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Margin="5">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="My images" Command="{Binding NavCommand}"
+                          CommandParameter="images" 
+                          Width="166" Height="30"/>
+                <MenuItem Header="Add image" Command="{Binding NavCommand}"
+                          CommandParameter="add" Width="164"/>
+                <MenuItem Header="Account details" Command="{Binding NavCommand}"
+                          CommandParameter="account" Width="152"/>
+            </Menu>
+        </DockPanel>
+        <Grid Grid.Row="1">
+            <ContentControl Content="{Binding CurrentViewModel}"/>
+        </Grid>
+    </Grid>
+</Window>

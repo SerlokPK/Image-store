@@ -3,13 +3,13 @@ using System.Collections.ObjectModel;
 
 namespace ImageStore.Model
 {
-    public class User : BaseModel
+    public class UserModel : BaseModel
     {
         private string username;
         private string password;
 
         public short Id { get; set; }
-        ObservableCollection<Image> Images;
+        public ObservableCollection<ImageModel>  Images { get; set; }
         public string Password
         {
             get { return password; }

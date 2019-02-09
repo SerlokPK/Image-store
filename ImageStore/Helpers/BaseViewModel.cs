@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageStore.Model;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -6,6 +7,22 @@ namespace ImageStore.Helpers
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        private UserModel m_User;
+        public BaseViewModel()
+        {
+
+        }
+
+        public UserModel User
+        {
+            get { return m_User; }
+            set
+            {
+                m_User = value;
+                OnPropertyChanged("User");
+            }
+        }
+
         #region PropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };

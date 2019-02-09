@@ -1,15 +1,19 @@
 ﻿using ImageStore.Helpers;
+using System;
+using System.Windows.Media.Imaging;
 
 namespace ImageStore.Model
 {
-    public class Image : BaseModel
+    public class ImageModel : BaseModel
     {
         private string description;
         private string title;
         private string path;
+        private BitmapImage data;
 
         public short Id { get; set; }
         public short UserId { get; set; }
+        public DateTime Created { get; set; }
         public string Description
         {
             get { return description; }
@@ -43,6 +47,19 @@ namespace ImageStore.Model
                 {
                     path = value;
                     OnPropertyChanged("Path");
+                }
+            }
+        }
+
+        public BitmapImage Data
+        {
+            get { return data; }
+            set
+            {
+                if (data != value)
+                {
+                    data = value;
+                    OnPropertyChanged("Data");
                 }
             }
         }

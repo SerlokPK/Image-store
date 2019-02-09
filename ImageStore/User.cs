@@ -9,10 +9,10 @@
 
 namespace ImageStore
 {
+    using System;
     using System.Collections.ObjectModel;
-    using System.ComponentModel;
-
-    public partial class User 
+    
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
@@ -21,9 +21,9 @@ namespace ImageStore
         }
     
         public short Id { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
-        public string Username { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<Image> Images { get; set; }
     }

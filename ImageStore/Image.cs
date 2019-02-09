@@ -19,6 +19,7 @@ namespace ImageStore
         public string Description { get; set; }
         public string Title { get; set; }
         public string Path { get; set; }
+        public System.DateTime Created { get; set; }
     
         public virtual User User { get; set; }
     }
