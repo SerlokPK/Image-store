@@ -35,7 +35,7 @@ namespace ImageStore.ViewModel
                 var user = UserService.GetUser(User);
                 var storeWindow = new StoreWindow();
                 var imageVM = new ImagesViewModel();
-                imageVM.Images = ImageService.GetImageSources(user);
+                imageVM.ImageModels = ImageService.GetImageModels(user);
                 storeWindow.DataContext = new StoreViewModel(user, imageVM);
                 CloseAction();
                 storeWindow.Show();

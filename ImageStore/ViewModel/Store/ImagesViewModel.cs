@@ -11,6 +11,7 @@ namespace ImageStore.ViewModel.Store
     public class ImagesViewModel : BaseViewModel
     {
         public ObservableCollection<BitmapImage> Images { get; set; }
+        public ObservableCollection<ImageModel> ImageModels { get; set; }
         public ImagesViewModel()
         {
 
