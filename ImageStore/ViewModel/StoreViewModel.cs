@@ -1,5 +1,6 @@
 ﻿using ImageStore.Helpers;
 using ImageStore.Model;
+using ImageStore.Services;
 using ImageStore.ViewModel.Store;
 
 namespace ImageStore.ViewModel
@@ -37,6 +38,7 @@ namespace ImageStore.ViewModel
             {
                 case "images":
                     imagesViewModel.User = User;
+                    imagesViewModel.Images = ImageService.GetImageSources(User);
                     CurrentViewModel = imagesViewModel;
                     break;
                 case "add":
@@ -44,8 +46,8 @@ namespace ImageStore.ViewModel
                     CurrentViewModel = addImageViewModel;
                     break;
                 case "account":
-                    CurrentViewModel = accountViewModel;
                     CurrentViewModel.User = User;
+                    CurrentViewModel = accountViewModel;
                     break;
             }
         }

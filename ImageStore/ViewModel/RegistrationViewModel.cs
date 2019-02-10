@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
-using ImageStore.Helpers;
+﻿using ImageStore.Helpers;
 using ImageStore.Model;
+using ImageStore.Services;
 using ImageStore.View;
 using ImageStore.ViewModel.Store;
 
@@ -30,24 +29,15 @@ namespace ImageStore.ViewModel
 
         private void OnRegister()
         {
-            //TODO VALIDATION
-            using (var context = new ImageStoreEntities())
+            User.Validate("registration");
+            if (User.IsValid)
             {
-                var id = (short)(context.Users.Any() ? context.Users.Max(x => x.Id) + 1 : 0);
-                context.Users.Add(new User
-                {
-                    Id = id,
-                    UserName = User.Username,
-                    Password = User.Password,
-                });
-
-                context.SaveChanges();
+                UserService.SaveUser(User);
+                var storeWindow = new StoreWindow();
+                storeWindow.Content = new StoreViewModel(User, new AddImageViewModel());
+                CloseAction();
+                storeWindow.Show();
             }
-
-            var storeWindow = new StoreWindow();
-            storeWindow.Content = new StoreViewModel(User,new AddImageViewModel());
-            CloseAction();
-            storeWindow.Show();
         }
     }
 }
