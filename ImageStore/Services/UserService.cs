@@ -84,5 +84,25 @@ namespace ImageStore.Services
                 }
             }
         }
+
+        public static void UpdateUser(UserModel user)
+        {
+            using (var context = new ImageStoreEntities())
+            {
+                try
+                {
+                    var dbUser = context.Users.Where(u => u.Id == user.Id).Single();
+
+                    dbUser.UserName = user.Username;
+                    dbUser.Password = user.Password;
+
+                    context.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    Trace.WriteLine(e.Message);
+                }
+            }
+        }
     }
 }

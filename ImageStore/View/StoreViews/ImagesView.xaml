@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         d:DesignHeight="650" d:DesignWidth="500">
     <Grid>
-        <ListView ItemsSource="{Binding Images}">
+        <ListView ItemsSource="{Binding Images}" ScrollViewer.VerticalScrollBarVisibility="Visible"
+          ScrollViewer.CanContentScroll="False" MaxHeight="550">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>

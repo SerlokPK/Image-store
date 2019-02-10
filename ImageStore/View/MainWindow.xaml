@@ -13,12 +13,12 @@
         <TextBox Text="{Binding User.Username, Mode=TwoWay}" 
                  HorizontalAlignment="Left" Height="39" Margin="115,218,0,0"  VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" FontSize="18"/>
         <TextBlock Text="{Binding User.ValidationErrors[Username]}"
-                   Foreground="Red" HorizontalAlignment="Left" Margin="115,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" Height="21"/>
+                   Foreground="Red" HorizontalAlignment="Left" Margin="153,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" Height="21"/>
         <Label x:Name="Password_label" Content="Password" HorizontalAlignment="Left" Margin="190,273,0,0" VerticalAlignment="Top" FontSize="22"/>
         <TextBox Text="{Binding User.Password, Mode=TwoWay}" 
                  HorizontalAlignment="Left" Height="39" Margin="115,317,0,0"  VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" FontSize="18"/>
         <TextBlock Text="{Binding User.ValidationErrors[Password]}"
-                   Foreground="Red" HorizontalAlignment="Left" Margin="115,361,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" Height="21"/>
+                   Foreground="Red" HorizontalAlignment="Left" Margin="153,356,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" Height="21"/>
         <Button Content="Log in" 
                 Command="{Binding LoginCommand}"
                 HorizontalAlignment="Left" Margin="115,398,0,0" VerticalAlignment="Top" Width="262" FontSize="18" Height="38" Background="#FF1986E0"/>

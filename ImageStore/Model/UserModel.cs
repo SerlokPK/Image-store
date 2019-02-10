@@ -55,7 +55,7 @@ namespace ImageStore.Model
                     this.ValidationErrors["Username"] = "User doesn't exist.";
                 }
             }
-            else
+            else if(type == "registration")
             {
                 if (UserService.CheckIfUsernameExist(this.username))
                 {

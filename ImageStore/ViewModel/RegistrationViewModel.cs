@@ -32,11 +32,7 @@ namespace ImageStore.ViewModel
             User.Validate("registration");
             if (User.IsValid)
             {
-                UserService.SaveUser(User);
-                var storeWindow = new StoreWindow();
-                storeWindow.Content = new StoreViewModel(User, new AddImageViewModel());
-                CloseAction();
-                storeWindow.Show();
+                OnLogin();
             }
         }
     }

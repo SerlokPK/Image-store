@@ -4,7 +4,7 @@ using System.Windows.Media.Imaging;
 
 namespace ImageStore.Model
 {
-    public class ImageModel : BaseModel
+    public class ImageModel : ValidationBase
     {
         private string description;
         private string title;
@@ -61,6 +61,18 @@ namespace ImageStore.Model
                     data = value;
                     OnPropertyChanged("Data");
                 }
+            }
+        }
+
+        protected override void ValidateSelf(string type)
+        {
+            if (string.IsNullOrWhiteSpace(this.Title))
+            {
+                this.ValidationErrors["Title"] = "Title is required.";
+            }
+            if (string.IsNullOrWhiteSpace(this.Path))
+            {
+                this.ValidationErrors["Path"] = "Choose image.";
             }
         }
     }

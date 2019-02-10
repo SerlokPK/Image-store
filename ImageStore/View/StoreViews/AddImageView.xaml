@@ -6,33 +6,29 @@
         xmlns:local="clr-namespace:ImageStore.View.StoreViews"
         mc:Ignorable="d"
         d:DesignHeight="650" d:DesignWidth="500">
-    <!--<UserControl.Resources>
-        <Style TargetType="{x:Type Button}" x:Key="ImageButtonStyle">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <ContentPresenter/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>-->
+    
     <Grid>
         <Button Command="{Binding AddImageCommand}" Margin="114,15,112,0" VerticalAlignment="Top" Width="274" Height="143">
             <StackPanel>
                 <Image Source="{Binding Image.Data}" />
             </StackPanel>
         </Button>
-        <Label Content="Image title" HorizontalAlignment="Left" Margin="177,158,0,0" VerticalAlignment="Top" FontSize="22"/>
-        <TextBox Text="{Binding Image.Title}" HorizontalAlignment="Left" Height="39" Margin="103,202,0,0"  VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" FontSize="18"/>
-        <Label Content="Description" HorizontalAlignment="Left" Margin="177,246,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <TextBlock Text="{Binding Image.ValidationErrors[Path]}"
+                   Foreground="Red" HorizontalAlignment="Left" Margin="177,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" Height="21"/>
+        <Label Content="Image title" HorizontalAlignment="Left" Margin="177,174,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <TextBox Text="{Binding Image.Title}" HorizontalAlignment="Left" Height="39" Margin="103,218,0,0"  VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" FontSize="18"/>
+        <TextBlock Text="{Binding Image.ValidationErrors[Title]}"
+                   Foreground="Red" HorizontalAlignment="Left" Margin="177,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="21"/>
+        <Label Content="Description" HorizontalAlignment="Left" Margin="177,269,0,0" VerticalAlignment="Top" FontSize="22"/>
         <TextBox
             Text="{Binding Image.Description}"
             TextWrapping="Wrap"
             AcceptsReturn="True"
             HorizontalScrollBarVisibility="Disabled"
-            VerticalScrollBarVisibility="Auto" Margin="103,306,112,87"/>
+            VerticalScrollBarVisibility="Auto" Margin="103,329,112,115"/>
         <Button Command="{Binding SaveImageCommand}"
-                Content="Save image"  HorizontalAlignment="Left" Margin="103,489,0,0" VerticalAlignment="Top" Width="274" FontSize="18" Height="38" Background="#FF1986E0"/>
+                Content="Save image"  HorizontalAlignment="Left" Margin="103,474,0,0" VerticalAlignment="Top" Width="274" FontSize="18" Height="38" Background="#FF1986E0"/>
+        <TextBlock Text="{Binding Saved}"
+                   Foreground="Green" HorizontalAlignment="Left" Margin="124,517,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="51" FontSize="36"/>
     </Grid>
 </UserControl>

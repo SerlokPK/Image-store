@@ -36,7 +36,7 @@ namespace ImageStore.Services
             }
         }
 
-        private static BitmapImage LoadImage(string fileName)
+        public static BitmapImage LoadImage(string fileName)
         {
             var image = new BitmapImage();
 
@@ -47,6 +47,8 @@ namespace ImageStore.Services
                     image.BeginInit();
                     image.CacheOption = BitmapCacheOption.OnLoad;
                     image.StreamSource = stream;
+                    image.DecodePixelWidth = 274;
+                    image.DecodePixelHeight = 143;
                     image.EndInit();
                 }
                 catch (Exception e)

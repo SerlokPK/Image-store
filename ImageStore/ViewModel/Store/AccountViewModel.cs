@@ -1,26 +1,38 @@
 ﻿using ImageStore.Helpers;
+using ImageStore.Services;
 using System.Linq;
 
 namespace ImageStore.ViewModel.Store
 {
     public class AccountViewModel : BaseViewModel
     {
+        private string updated;
         public CommandHelper SaveCommand { get; private set; }
         public AccountViewModel()
         {
             SaveCommand = new CommandHelper(OnSave);
         }
 
+        public string Updated
+        {
+            get { return updated; }
+            set
+            {
+                if (updated != value)
+                {
+                    updated = value;
+                    OnPropertyChanged("Updated");
+                }
+            }
+        }
         private void OnSave()
         {
-            using (var context = new ImageStoreEntities())
+            Updated = "";
+            User.Validate("registration");
+            if (User.IsValid)
             {
-                var user = context.Users.Where(u => u.Id == User.Id).Single();
-
-                user.UserName = User.Username;
-                user.Password = User.Password;
-
-                context.SaveChanges();
+                UserService.UpdateUser(User);
+                Updated = "Successfully updated";
             }
         }
     }

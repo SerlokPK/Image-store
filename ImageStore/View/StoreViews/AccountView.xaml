@@ -7,14 +7,22 @@
         mc:Ignorable="d"
         d:DesignHeight="650" d:DesignWidth="500">
     <Grid>
-        <Label Content="New username" HorizontalAlignment="Left" Margin="163,174,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <Label Content="Profile" HorizontalAlignment="Left" Margin="163,32,0,0" VerticalAlignment="Top" Width="194" Height="53" FontSize="36" FontWeight="Bold"/>
+        <Label Content="Change information" HorizontalAlignment="Left" Margin="115,123,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Label Content="New username" HorizontalAlignment="Left" Margin="163,246,0,0" VerticalAlignment="Top" FontSize="22"/>
         <TextBox Text="{Binding User.Username, Mode=TwoWay}" 
-                 HorizontalAlignment="Left" Height="39" Margin="115,218,0,0"  VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" FontSize="18"/>
-        <Label Content="New password" HorizontalAlignment="Left" Margin="163,273,0,0" VerticalAlignment="Top" FontSize="22" Width="155"/>
+                 HorizontalAlignment="Left" Height="39" Margin="115,290,0,0"  VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" FontSize="18"/>
+        <TextBlock Text="{Binding User.ValidationErrors[Username]}"
+                   Foreground="Red" HorizontalAlignment="Left" Margin="141,329,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" Height="21"/>
+        <Label Content="New password" HorizontalAlignment="Left" Margin="163,345,0,0" VerticalAlignment="Top" FontSize="22" Width="155"/>
         <TextBox Text="{Binding User.Password, Mode=TwoWay}" 
-                 HorizontalAlignment="Left" Height="39" Margin="115,317,0,0"  VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" FontSize="18"/>
+                 HorizontalAlignment="Left" Height="39" Margin="115,389,0,0"  VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" FontSize="18"/>
+        <TextBlock Text="{Binding User.ValidationErrors[Password]}"
+                   Foreground="Red" HorizontalAlignment="Left" Margin="141,428,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" Height="21"/>
         <Button Content="Save changes" 
                 Command="{Binding SaveCommand}"
-                HorizontalAlignment="Left" Margin="115,386,0,0" VerticalAlignment="Top" Width="262" FontSize="18" Height="38" Background="#FF1986E0"/>
+                HorizontalAlignment="Left" Margin="115,458,0,0" VerticalAlignment="Top" Width="262" FontSize="18" Height="38" Background="#FF1986E0"/>
+        <TextBlock Text="{Binding Updated}"
+                   Foreground="Green" HorizontalAlignment="Left" Margin="129,501,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="51" FontSize="20"/>
     </Grid>
 </UserControl>

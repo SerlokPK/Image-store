@@ -22,7 +22,7 @@
           </Key>
           <Property Name="Id" Type="smallint" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Images_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
@@ -66,7 +66,7 @@
           </Key>
           <Property Name="Id" Type="Int16" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Images" Relationship="Self.FK_Images_Users" FromRole="Users" ToRole="Images" />
         </EntityType>
         <Association Name="FK_Images_Users">

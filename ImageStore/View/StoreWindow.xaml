@@ -9,6 +9,40 @@
         mc:Ignorable="d"
         Title="ImageStore" Height="650" Width="500">
     <Window.Resources>
+        <Style TargetType="{x:Type MenuItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type MenuItem}">
+                        <Border>
+                            <Grid>
+                                <Grid>
+                                    <Border x:Name="border" 
+                                            CornerRadius="3,3,0,0"
+                                            Background="WhiteSmoke"/>
+                                </Grid>
+                                <ContentPresenter ContentSource="Header"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="#FF268D26" />
+                            </Trigger>
+                            <Trigger Property="IsChecked"
+                                     Value="True">
+                                <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="#FF2AEE2A" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <DataTemplate DataType="{x:Type viewModel:AddImageViewModel}">
             <views:AddImageView/>
         </DataTemplate>
@@ -27,12 +61,12 @@
         <DockPanel Grid.Row="0" Margin="5">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="My images" Command="{Binding NavCommand}"
-                          CommandParameter="images" 
+                          CommandParameter="images" IsChecked="{Binding ImagesChecked}"
                           Width="140" Height="30"/>
                 <MenuItem Header="Add image" Command="{Binding NavCommand}"
-                          CommandParameter="add" Width="160"/>
+                          CommandParameter="add" Width="160" IsChecked="{Binding AddChecked}"/>
                 <MenuItem Header="Account details" Command="{Binding NavCommand}"
-                          CommandParameter="account" Width="160"/>
+                          CommandParameter="account" Width="160" IsChecked="{Binding AccountChecked}"/>
             </Menu>
         </DockPanel>
         <Grid Grid.Row="1">
