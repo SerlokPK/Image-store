@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Data.Entity;
+using System;
+using System.Diagnostics;
 
 namespace ImageStore.Services
 {
@@ -28,28 +30,34 @@ namespace ImageStore.Services
             var user = new UserModel();
             using (var context = new ImageStoreEntities())
             {
-                var dbUser = context.Users.Include(u => u.Images)
+                try
+                {
+                    var dbUser = context.Users.Include(u => u.Images)
                                             .Where(u => u.UserName == User.Username && u.Password == User.Password).Single();
-                var imageList = new ObservableCollection<ImageModel>();
-                foreach (var image in dbUser.Images)
-                {
-                    imageList.Add(new ImageModel
+                    var imageList = new ObservableCollection<ImageModel>();
+                    foreach (var image in dbUser.Images)
                     {
-                        Id = image.Id,
-                        Created = image.Created,
-                        Description = image.Description,
-                        Path = image.Path,
-                        Title = image.Title,
-                        UserId = image.UserId,
-                    });
-                }
-                user = new UserModel
+                        imageList.Add(new ImageModel
+                        {
+                            Id = image.Id,
+                            Created = image.Created,
+                            Description = image.Description,
+                            Path = image.Path,
+                            Title = image.Title,
+                            UserId = image.UserId,
+                        });
+                    }
+                    user = new UserModel
+                    {
+                        Id = dbUser.Id,
+                        Username = dbUser.UserName,
+                        Password = dbUser.Password,
+                        Images = imageList,
+                    };
+                }catch(Exception e)
                 {
-                    Id = dbUser.Id,
-                    Username = dbUser.UserName,
-                    Password = dbUser.Password,
-                    Images = imageList,
-                };
+                    Trace.WriteLine(e.Message);
+                }
             }
 
             return user;
@@ -59,15 +67,21 @@ namespace ImageStore.Services
         {
             using (var context = new ImageStoreEntities())
             {
-                var id = (short)(context.Users.Any() ? context.Users.Max(x => x.Id) + 1 : 0);
-                context.Users.Add(new User
+                try
                 {
-                    Id = id,
-                    UserName = User.Username,
-                    Password = User.Password,
-                });
+                    var id = (short)(context.Users.Any() ? context.Users.Max(x => x.Id) + 1 : 0);
+                    context.Users.Add(new User
+                    {
+                        Id = id,
+                        UserName = User.Username,
+                        Password = User.Password,
+                    });
 
-                context.SaveChanges();
+                    context.SaveChanges();
+                }catch(Exception e)
+                {
+                    Trace.WriteLine(e.Message);
+                }
             }
         }
     }

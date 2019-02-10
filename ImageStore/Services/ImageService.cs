@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,18 @@ namespace ImageStore.Services
             ObservableCollection<BitmapImage> bitMapImg = new ObservableCollection<BitmapImage>();
             using (var context = new ImageStoreEntities())
             {
-                var images = context.Images.Where(i => i.UserId == user.Id).ToList();
-
-                foreach (var image in images)
+                try
                 {
-                    bitMapImg.Add(LoadImage(image.Path));
+                    var images = context.Images.Where(i => i.UserId == user.Id).ToList();
+
+                    foreach (var image in images)
+                    {
+                        bitMapImg.Add(LoadImage(image.Path));
+                    }
+                }
+                catch (Exception e)
+                {
+                    Trace.WriteLine(e.Message);
                 }
 
                 return bitMapImg;
@@ -34,13 +42,46 @@ namespace ImageStore.Services
 
             using (var stream = new FileStream(fileName, FileMode.Open))
             {
-                image.BeginInit();
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.StreamSource = stream;
-                image.EndInit();
+                try
+                {
+                    image.BeginInit();
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.StreamSource = stream;
+                    image.EndInit();
+                }
+                catch (Exception e)
+                {
+                    Trace.WriteLine(e.Message);
+                }
             }
 
             return image;
+        }
+
+        public static void SaveImage(ImageModel image)
+        {
+            using (var context = new ImageStoreEntities())
+            {
+                try
+                {
+                    var id = (short)(context.Images.Any() ? context.Images.Max(x => x.Id) + 1 : 0);
+                    var images = context.Images.Add(new Image
+                    {
+                        Id = id,
+                        Created = DateTime.Now,
+                        Description = image.Description,
+                        Title = image.Title,
+                        Path = image.Path,
+                        UserId = image.UserId,
+                    });
+
+                    context.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    Trace.WriteLine(e.Message);
+                }
+            }
         }
     }
 }

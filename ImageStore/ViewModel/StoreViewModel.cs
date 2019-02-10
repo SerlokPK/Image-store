@@ -46,8 +46,8 @@ namespace ImageStore.ViewModel
                     CurrentViewModel = addImageViewModel;
                     break;
                 case "account":
-                    CurrentViewModel.User = User;
                     CurrentViewModel = accountViewModel;
+                    CurrentViewModel.User = User;
                     break;
             }
         }
