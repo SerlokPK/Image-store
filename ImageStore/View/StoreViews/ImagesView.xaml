@@ -7,12 +7,15 @@
         mc:Ignorable="d"
         d:DesignHeight="650" d:DesignWidth="500">
     <Grid>
-        <ListView ItemsSource="{Binding Images}" ScrollViewer.VerticalScrollBarVisibility="Visible"
+        <ListView ItemsSource="{Binding ImageModels}" ScrollViewer.VerticalScrollBarVisibility="Visible"
           ScrollViewer.CanContentScroll="False" MaxHeight="550">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <Image Source="{Binding}" />
+                        <Image Source="{Binding Data}" />
+                        <TextBlock Text="{Binding Title}"/>
+                        <TextBlock Text="{Binding Created}"/>
+                        <TextBlock Text="{Binding Description}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

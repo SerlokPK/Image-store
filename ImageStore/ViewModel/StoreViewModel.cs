@@ -71,7 +71,7 @@ namespace ImageStore.ViewModel
             {
                 case "images":
                     imagesViewModel.User = User;
-                    imagesViewModel.Images = ImageService.GetImageSources(User);
+                    imagesViewModel.ImageModels = ImageService.GetImageModels(User);
                     SetAllToFalse();
                     ImagesChecked = true;
                     CurrentViewModel = imagesViewModel;

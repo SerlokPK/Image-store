@@ -13,18 +13,26 @@ namespace ImageStore.Services
 {
     public static class ImageService
     {
-        public static ObservableCollection<BitmapImage> GetImageSources(UserModel user)
+        public static ObservableCollection<ImageModel> GetImageModels(UserModel user)
         {
-            ObservableCollection<BitmapImage> bitMapImg = new ObservableCollection<BitmapImage>();
+            ObservableCollection<ImageModel> images = new ObservableCollection<ImageModel>();
             using (var context = new ImageStoreEntities())
             {
                 try
                 {
-                    var images = context.Images.Where(i => i.UserId == user.Id).ToList();
-
-                    foreach (var image in images)
+                    var dbImages = context.Images.Where(i => i.UserId == user.Id);
+                    foreach(var image in dbImages)
                     {
-                        bitMapImg.Add(LoadImage(image.Path));
+                        images.Add(new ImageModel
+                        {
+                            Id = image.Id,
+                            Created = image.Created,
+                            Description = image.Description,
+                            Path = image.Path,
+                            Title = image.Title,
+                            UserId = image.UserId,
+                            Data = LoadImage(image.Path),
+                        });
                     }
                 }
                 catch (Exception e)
@@ -32,7 +40,7 @@ namespace ImageStore.Services
                     Trace.WriteLine(e.Message);
                 }
 
-                return bitMapImg;
+                return images;
             }
         }
 
